@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+ class Helper{
+     public:
+      string path;
+      int att;
+      Helper(string s, int a)
+      {
+          path=s;
+          att=a;
+      }
+ };
+int fun(int f,int e, vector<vector<int> >& dp)
+{
+   if(e==1 || f==1)
+      return f;
+    if(dp[f][e]!=-1)
+      return dp[f][e];
+    int minn=INT_MAX;
+    for(int i=1;i<=f;i++)
+    {
+        minn=min(minn,max(fun(f-i,e,dp),fun(i-1,e-1,dp)));
+    }  
+    dp[f][e]=minn+1;
+    return dp[f][e];  
+}
+int main() {
+    vector<vector<int> > dp(10+1,vector<int>(2,-1));
+    int n=fun(10,2,dp);
+   
+
+    return 0;
+}
+
